@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POS SYSTEM</title>
+    <style>
+        .scops {
+            position: absolute;
+            width: 100%;
+        }
+
+        .border {
+            position: relative;
+            padding: 5%;
+            border: 1px solid #d8d8d8;
+            margin: 10% 30%;
+        }
+
+        .border::before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 1em;
+            color: #aaa;
+            font-size: smaller;
+            font-weight: 500;
+            content: 'POS SYSTEM';
+        }
+
+        .input-group {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            width: 97%;
+            margin: 2%;
+        }
+
+        .input-group-prepend {
+            margin-right: -1px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .input-group>.input-group-append:last-child>.btn:not(:last-child):not(.dropdown-toggle),
+        .input-group>.input-group-append:last-child>.input-group-text:not(:last-child),
+        .input-group>.input-group-append:not(:last-child)>.btn,
+        .input-group>.input-group-append:not(:last-child)>.input-group-text,
+        .input-group>.input-group-prepend>.btn,
+        .input-group>.input-group-prepend>.input-group-text {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .input-group-text {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: .375rem .75rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+        }
+
+        input-group>.form-control:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .input-group>.custom-file,
+        .input-group>.custom-select,
+        .input-group>.form-control {
+            position: relative;
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn {
+            margin-right: 1%;
+            margin-bottom: 2%;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="scops">
+            <div class="border">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ราคา</span>
+                    </div>
+                    <input value="" type="text" class="form-control" id="price">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">จำนวน</span>
+                    </div>
+                    <input value="" type="text" class="form-control" id="number">
+                </div>
+                <button class="btn btn-primary" style="float: right;" onclick="BtnADD()">ADD</button>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">จ่าย</span>
+                    </div>
+                    <input value="" type="text" class="form-control" id="Pay">
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">ชำระเงิน</span>
+                    </div>
+                    <input value="" type="text" class="form-control" id="Payment">
+                </div>
+                <button class="btn btn-primary" style="float: right;" onclick="BtnCAL()">CAL</button>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">เงินทอน</span>
+                    </div>
+                    <input value="" type="text" class="form-control" id="change">
+                </div>
+
+            </div>
+        </div>
+    </center>
+    <script>
+
+
+        function BtnADD() {
+            var price = document.getElementById("price").value;
+            var number = document.getElementById("number").value;
+            var AllADD = price * number;
+            document.getElementById("Pay").value = AllADD;
+
+        }
+
+        function BtnCAL() {
+            var Pay = document.getElementById("Pay").value;
+            var Payment = document.getElementById("Payment").value;
+            if (Payment < Pay) {
+                document.getElementById("Payment").value = "ชำระเงินไม่ถูกต้อง";
+            } else {
+                var AllCAL = Payment - Pay;
+                document.getElementById("change").value = AllCAL;
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
